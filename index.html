@@ -47,19 +47,6 @@
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-}
-.menu {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    display: flex;
-    gap: 10px;
-}
 </style>
 
 </head>
@@ -82,15 +69,59 @@ nav {
         </div>
 
         <div class="grid-container" style="padding-top: 40px;">
-            <div class="grid-item">
+            <!--<div class="grid-item">
                 <img src="in_out_register_icon.png" alt="In and out register">
                 <p>In and out register</p>
             </div>
             <div class="grid-item">
                 <img src="mess_log_icon.png" alt="Mess log">
                 <p>Mess log</p>
+            </div> -->
+
+            <div class="grid-item">
+                <a href="in_out_register.html">
+                    <img src="in_out_register_icon.png" alt="In and out register">
+                    <p>In and out register</p>
+                </a>
             </div>
-            <a href="profile_auth.html">
+            
+            <div class="grid-item">
+                <a href="mess_log.html">
+                    <img src="mess_log_icon.png" alt="Mess log">
+                    <p>Mess log</p>
+                </a>
+            </div>
+            
+            <div class="grid-item">
+                <a href="profile.html">
+                    <img src="profile_icon.png" alt="Profile">
+                    <p>Profile</p>
+                </a>
+            </div>
+            
+            <div class="grid-item">
+                <a href="transactions.html">
+                    <img src="transactions_icon.png" alt="Transactions">
+                    <p>Transactions</p>
+                </a>
+            </div>
+            
+            <div class="grid-item">
+                <a href="medical.html">
+                    <img src="medical_icon.png" alt="Medical">
+                    <p>Medical</p>
+                </a>
+            </div>
+            
+            <div class="grid-item">
+                <a href="room_management.html">
+                    <img src="room_management_icon.png" alt="Room management">
+                    <p>Room management</p>
+                </a>
+            </div>
+            
+
+            <!--<a href="profile_auth.html">
     <div class="grid-item">
         <img src="profile_icon.png" alt="Profile">
         <p>Profile</p>
@@ -108,7 +139,7 @@ nav {
             <div class="grid-item">
                 <img src="room_management_icon.png" alt="Room management">
                 <p>Room management</p>
-            </div>
+            </div>-->
         </div>
     </main>
 <script>
@@ -125,6 +156,14 @@ nav {
 
         // Redirect to profile page
         window.location.href = "profile_auth.html";
+    });
+</script>
+
+<script src="profile.js"></script>
+<script>
+    document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("userProfile");
+        window.location.href = "index.html";
     });
 </script>
 <script>
@@ -180,5 +219,6 @@ nav {
         }
     });
 </script>
+
 </body>
 </html>
