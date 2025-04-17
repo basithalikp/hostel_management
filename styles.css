@@ -1,0 +1,131 @@
+/* Default styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.content-container {
+    display: flex;
+    align-items: center; /* Vertically aligns the text and image */
+    justify-content: space-between; /* Separates text and image */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    flex: 1; /* Occupies the left half */
+    font-size: 36px;
+    color: var(--text-color);
+}
+
+.content-container img {
+    flex: 1; /* Occupies the right half */
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px; /* Adds rounded corners */
+}
+
+
+/* Color scheme variables */
+:root {
+    --background-light: #ffffff;
+    --text-light: #000000;
+    --background-dark: #1a1a2e;
+    --text-dark: #eaeaea;
+    --primary-light: #dcd6f7;
+    --primary-dark: #16213e;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu button {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px; /* Increased space between icons */
+    justify-content: center;
+    padding: 40px;
+}
+
+/*.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}*/
+
+.grid-item {
+    background-color: var(--primary-color);
+    padding: 60px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.grid-item img {
+    max-width: 80px; /* Limits icon size */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*.grid-item img {
+    max-width: 100%;
+    height: auto;
+}*/
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: var(--background-dark);
+        --text-color: var(--text-dark);
+        --primary-color: var(--primary-dark);
+    }
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: var(--background-light);
+        --text-color: var(--text-light);
+        --primary-color: var(--primary-light);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr); /* Switch to 1 per row */
+    }
+}
