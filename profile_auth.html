@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css" />
+<style>
+    input, select {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+        border-color: #4A90E2;
+        background-color: #fff;
+        outline: none;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background-color: #4A90E2;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #357ABD;
+    }
+
+    .form-container {
+        margin: 30px auto;
+        max-width: 400px;
+        padding: 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+.profile-container p {
+    color: #222;              /* darker than #666 or default grey */
+    font-weight: 500;         /* semi-bold */
+    font-size: 16px;
+}
+.profile-container h2 {
+    font-size: 26px;
+    color: #111;
+    margin-bottom: 20px;
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Smart Hostel</div>
+            <div class="menu">
+                <button id="logout" style="display: none;">Log Out</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Profile Section -->
+        <div class="profile-container" id="profile-info" style="display: none; max-width: 600px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <h2>Welcome, <span id="user-name">User</span>!</h2>
+            <p><strong>Full Name:</strong> <span id="user-fullname"></span></p>
+            <p><strong>Age:</strong> <span id="user-age"></span></p>
+            <p><strong>Gender:</strong> <span id="user-gender"></span></p>
+            <p><strong>Email:</strong> <span id="user-email"></span></p>
+        </div>
+
+        <!-- Auth Forms -->
+        <div id="auth-section" style="margin: 50px auto; max-width: 400px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+            <div id="auth-toggle" style="text-align: center;">
+                <button onclick="showLogin()">Login</button>
+                <button onclick="showSignup()">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" style="display: none; margin-top: 20px;">
+                <h2>Login</h2>
+                <input type="text" id="login-username" placeholder="Username" required><br><br>
+                <button id="login-button">Login</button>
+            </div>
+
+            <!-- Sign-Up Form -->
+            <div id="signup-form" style="display: none; margin-top: 20px;">
+                <h2>Sign Up</h2>
+                <input type="text" id="input-fullname" placeholder="Full Name" required><br><br>
+                <input type="text" id="input-username" placeholder="Username" required><br><br>
+                <input type="number" id="input-age" placeholder="Age" required><br><br>
+                <select id="input-gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+                <input type="email" id="input-email" placeholder="Email" required><br><br>
+                <button id="submit-signup">Submit</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const profileSection = document.getElementById("profile-info");
+        const authSection = document.getElementById("auth-section");
+        const logoutBtn = document.getElementById("logout");
+
+        const userData = JSON.parse(localStorage.getItem("userProfile"));
+
+        function showProfile(user) {
+            document.getElementById("user-name").innerText = user.username;
+            document.getElementById("user-fullname").innerText = user.fullName;
+            document.getElementById("user-age").innerText = user.age;
+            document.getElementById("user-gender").innerText = user.gender;
+            document.getElementById("user-email").innerText = user.email;
+
+            profileSection.style.display = "block";
+            authSection.style.display = "none";
+            logoutBtn.style.display = "inline-block";
+        }
+
+        if (userData) {
+            showProfile(userData);
+        } else {
+            document.getElementById("auth-section").style.display = "block";
+            showLogin(); // default to login
+        }
+
+        // Auth toggle
+        function showLogin() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("signup-form").style.display = "none";
+        }
+
+        function showSignup() {
+            document.getElementById("signup-form").style.display = "block";
+            document.getElementById("login-form").style.display = "none";
+        }
+
+        // Login
+        document.getElementById("login-button").addEventListener("click", () => {
+            const enteredUsername = document.getElementById("login-username").value;
+            const storedData = JSON.parse(localStorage.getItem("userProfile"));
+
+            if (storedData && storedData.username === enteredUsername) {
+                showProfile(storedData);
+            } else {
+                alert("User not found. Please sign up.");
+            }
+        });
+
+        // Sign-up
+        document.getElementById("submit-signup").addEventListener("click", () => {
+            const newUser = {
+                fullName: document.getElementById("input-fullname").value,
+                username: document.getElementById("input-username").value,
+                age: document.getElementById("input-age").value,
+                gender: document.getElementById("input-gender").value,
+                email: document.getElementById("input-email").value
+            };
+            localStorage.setItem("userProfile", JSON.stringify(newUser));
+            showProfile(newUser);
+        });
+
+        // Logout
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("userProfile");
+            window.location.href = "profile.html";
+        });
+    </script>
+</body>
+</html>
