@@ -88,10 +88,22 @@ main {
 }
 
 .grid-item img {
-    max-width: 80px; /* Limits icon size */
+    max-width: 80px;
     height: auto;
     display: block;
     margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+}
+
+.grid-item a {
+    text-decoration: none; /* Removes default underline */
+    color: var(--text-color);
+    display: block;
+}
+
+.grid-item a:hover img {
+    transform: scale(1.1); /* Slightly enlarges the icon */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Adds a subtle glow */
 }
 
 
