@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medical Access - Hostel Management</title>
+  <link rel="stylesheet" href="medical.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Medical Access</h2>
+    <p>If you're feeling unwell or need assistance, fill out the form below:</p>
+
+    <form id="medicalForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="room">Room Number:</label>
+      <input type="text" id="room" required>
+
+      <label for="issue">Medical Issue:</label>
+      <textarea id="issue" rows="4" required></textarea>
+
+      <button type="submit">Submit Request</button>
+    </form>
+
+    <p id="confirmation"></p>
+  </div>
+
+  <script src="medical.js"></script>
+</body>
+</html>
