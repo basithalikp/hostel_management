@@ -5,14 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Hostel Management</title>
     <link rel="stylesheet" href="styles.css">
+<style>
+    input, select {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+        border-color: #4A90E2;
+        background-color: #fff;
+        outline: none;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background-color: #4A90E2;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #357ABD;
+    }
+
+    .form-container {
+        margin: 30px auto;
+        max-width: 400px;
+        padding: 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+</style>
+
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">Smart Hostel</div>
             <div class="menu">
-                <button id="login">Log In</button>
-                <button id="signup">Sign Up</button>
+                <button id="login" onclick="window.location.href='profile_auth.html?mode=login'">Log In</button>
+<button id="signup" onclick="window.location.href='profile_auth.html?mode=signup'">Sign Up</button>
+
+
             </div>
         </nav>
     </header>
@@ -31,10 +77,13 @@
                 <img src="mess_log_icon.png" alt="Mess log">
                 <p>Mess log</p>
             </div>
-            <div class="grid-item">
-                <img src="profile_icon.png" alt="Profile">
-                <p>Profile</p>
-            </div>
+            <a href="profile_auth.html">
+    <div class="grid-item">
+        <img src="profile_icon.png" alt="Profile">
+        <p>Profile</p>
+    </div>
+</a>
+            
             <div class="grid-item">
                 <img src="transactions_icon.png" alt="Transactions">
                 <p>Transactions</p>
@@ -49,6 +98,83 @@
             </div>
         </div>
     </main>
-    <script src="script.js"></script>
+<script>
+    document.getElementById("submit-signup").addEventListener("click", () => {
+        const userData = {
+            fullName: document.getElementById("input-fullname").value,
+            username: document.getElementById("input-username").value,
+            age: document.getElementById("input-age").value,
+            gender: document.getElementById("input-gender").value,
+            email: document.getElementById("input-email").value
+        };
+
+        localStorage.setItem("userProfile", JSON.stringify(userData));
+
+        // Redirect to profile page
+        window.location.href = "profile_auth.html";
+    });
+</script>
+
+<script src="profile.js"></script>
+<script>
+    document.getElementById("logout").addEventListener("click", () => {
+        localStorage.removeItem("userProfile");
+        window.location.href = "index.html";
+    });
+</script>
+<script>
+    // Hide sign-up form if user is already signed in
+    const user = JSON.parse(localStorage.getItem("userProfile"));
+    if (user) {
+        const signupForm = document.getElementById("signup-form");
+        if (signupForm) {
+            signupForm.style.display = "none";
+        }
+
+        // Optional: You can also hide the login/signup buttons
+        const loginBtn = document.getElementById("login");
+        const signupBtn = document.getElementById("signup");
+        if (loginBtn) loginBtn.style.display = "none";
+        if (signupBtn) signupBtn.style.display = "none";
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentUser = JSON.parse(localStorage.getItem("userProfile"));
+        if (currentUser && currentUser.username) {
+            // Remove the login and signup buttons
+            const loginBtn = document.getElementById("login");
+            const signupBtn = document.getElementById("signup");
+            if (loginBtn) loginBtn.remove();
+            if (signupBtn) signupBtn.remove();
+
+            // Create a circular avatar with the first letter of username
+            const menuDiv = document.querySelector(".menu");
+            const avatar = document.createElement("div");
+            avatar.textContent = currentUser.username.charAt(0).toUpperCase();
+            avatar.style.width = "40px";
+            avatar.style.height = "40px";
+            avatar.style.borderRadius = "50%";
+            avatar.style.backgroundColor = "#4A90E2";
+            avatar.style.color = "white";
+            avatar.style.display = "flex";
+            avatar.style.alignItems = "center";
+            avatar.style.justifyContent = "center";
+            avatar.style.fontSize = "18px";
+            avatar.style.cursor = "pointer";
+            avatar.title = currentUser.username;
+            avatar.style.marginLeft = "5px";
+            avatar.style.marginTop = "5px";
+
+            // Optional: Redirect to profile on click
+            avatar.onclick = function () {
+                window.location.href = "profile_auth.html";
+            };
+
+            menuDiv.appendChild(avatar);
+        }
+    });
+</script>
+
 </body>
 </html>
