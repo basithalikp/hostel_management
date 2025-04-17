@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Room In/Out Register</title>
+  <link rel="stylesheet" href="reg.css" />
+</head>
+<body>
+  <a href="https://your-main-website.com" class="back-button">← Home</a>
+  <div class="container">
+    <h1>Room In/Out Register</h1>
+    <form id="logForm">
+      <input type="text" id="name" placeholder="Enter Name" required />
+      <select id="action">
+        <option value="In">In</option>
+        <option value="Out">Out</option>
+      </select>
+      <button type="submit">Log</button>
+    </form>
+
+    <table id="logTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Action</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="reg.js"></script>
+</body>
+</html>
+
+
