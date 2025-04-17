@@ -127,14 +127,6 @@ nav {
         window.location.href = "profile_auth.html";
     });
 </script>
-
-<script src="profile.js"></script>
-<script>
-    document.getElementById("logout").addEventListener("click", () => {
-        localStorage.removeItem("userProfile");
-        window.location.href = "index.html";
-    });
-</script>
 <script>
     // Hide sign-up form if user is already signed in
     const user = JSON.parse(localStorage.getItem("userProfile"));
@@ -188,6 +180,5 @@ nav {
         }
     });
 </script>
-
 </body>
 </html>
