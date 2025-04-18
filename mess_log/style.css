@@ -1,0 +1,164 @@
+ /* Additional CSS specific to the mess management page */
+ main {
+    padding: 20px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Today's Specials Section */
+  .specials {
+    margin-bottom: 30px;
+  }
+  .specials h2 {
+    margin-bottom: 10px;
+  }
+  .specials table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .specials th,
+  .specials td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+  }
+  .specials th {
+    background-color: var(--primary-color);
+  }
+
+  /* Now in Mess Section */
+  .current-mess {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .current-mess .info {
+    flex: 1;
+    min-width: 250px;
+  }
+  .current-mess h2 {
+    margin-top: 0;
+  }
+  .current-mess button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--text-color);
+    color: var(--background-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+  }
+  .current-mess button:hover {
+    opacity: 0.8;
+  }
+
+  /* Billing Section (Pending and Paid) */
+  .billing {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .billing p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  .billing button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+  }
+  .billing a{
+    text-decoration: none; /* Removes default underline */
+    color: var(--text-color);
+    display: block;
+  }
+  .billing button:hover {
+    opacity: 0.8;
+  }
+
+  /* History Table Section */
+  .history h2 {
+    margin-bottom: 10px;
+  }
+  .history table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .history th,
+  .history td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+  }
+  .history th {
+    background-color: var(--primary-color);
+  }
+
+  /* Container to house the header text and table side by side */
+.header-content {
+    display: flex;
+    flex-wrap: wrap;           /* Allows items to wrap on smaller screens */
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  /* Default to full width for each on small screens */
+  .header-text,
+  .specials-table {
+    flex: 1 1 100%;
+  }
+  
+  /* Side by side on larger screens */
+  @media (min-width: 768px) {
+    .header-text,
+    .specials-table {
+      flex: 0 0 48%;  /* Each takes ~50%, with some gap in between */
+    }
+  }
+  
+  /* Style the h1 text to match the main page's design */
+  .header-text h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
+  }
+  
+  /* Optional: Keep the specials table consistent with your dark/light mode theme */
+  .specials-table h2 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .specials-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .specials-table th,
+  .specials-table td {
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .specials-table th {
+    background-color: var(--primary-color);
+  }
+  

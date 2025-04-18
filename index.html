@@ -5,68 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Hostel Management</title>
     <link rel="stylesheet" href="styles.css">
-<style>
-    input, select {
-        width: 100%;
-        padding: 12px 15px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 16px;
-        background-color: #f9f9f9;
-        transition: all 0.3s ease;
-    }
 
-    input:focus, select:focus {
-        border-color: #4A90E2;
-        background-color: #fff;
-        outline: none;
-    }
-
-    button {
-        padding: 12px 20px;
-        font-size: 16px;
-        background-color: #4A90E2;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #357ABD;
-    }
-
-    .form-container {
-        margin: 30px auto;
-        max-width: 400px;
-        padding: 30px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    nav {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     padding: 15px 30px;
- }
- .menu {
-     position: absolute;
-     top: 15px;
-     right: 25px;
-     display: flex;
-     gap: 10px;
- }
-</style>
 
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Smart Hostel</div>
+            
+            <div class="logo"><a href="index.html">Smart Hostel</a></div>
             <div class="menu">
                 <button id="login" onclick="window.location.href='profile_auth.html?mode=login'">Log In</button>
 <button id="signup" onclick="window.location.href='profile_auth.html?mode=signup'">Sign Up</button>
@@ -91,7 +37,7 @@
             </div>
             
             <div class="grid-item">
-                <a href="mess_log.html">
+                <a href="mess_log/index.html">
                     <img src="mess_log_icon.png" alt="Mess log">
                     <p>Mess log</p>
                 </a>
@@ -105,7 +51,7 @@
             </div>
             
             <div class="grid-item">
-                <a href="transaction/transaction.html">
+                <a href="transactions.html">
                     <img src="transactions_icon.png" alt="Transactions">
                     <p>Transactions</p>
                 </a>
