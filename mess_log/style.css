@@ -132,13 +132,7 @@
     }
   }
   
-  /* Style the h1 text to match the main page's design */
-  .header-text h1 {
-    font-size: 36px;
-    font-weight: bold;
-    color: var(--text-color);
-    margin: 0;
-  }
+
   
   /* Optional: Keep the specials table consistent with your dark/light mode theme */
   .specials-table h2 {
