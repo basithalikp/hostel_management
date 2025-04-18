@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mess Management - Smart Hostel</title>
+  <!-- Link to your global CSS for consistent design and dark/light mode -->
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+   
+  </style>
+</head>
+<body>
+  <!-- Header section (reuse same layout from main page) -->
+  <header>
+    <nav>
+      <div class="logo">Smart Hostel</div>
+      <div class="menu">
+        <button id="login">Log In</button>
+        <button id="signup">Sign Up</button>
+      </div>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="header-content">
+        <div class="header-text">
+          <h1>Welcome to Hostel Mess</h1>
+        </div>
+        <div class="specials-table">
+          <h2>Today's Specials</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Menu</th>
+                <th>Price (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Morning</td>
+                <td>Upma</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Noon</td>
+                <td>Biriyani</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td>Evening</td>
+                <td>Samosa</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Dinner</td>
+                <td>Rice</td>
+                <td>40</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+    <!-- Now in Mess Section -->
+     <div style="padding-top: 60px;">
+    <section class="current-mess">
+      <div class="info">
+        <h2>Now in Mess:</h2>
+        <p id="currentDish">--</p>
+        <p id="currentPrice">Price: ₹--</p>
+      </div>
+      <div>
+        <button id="orderBtn">Order</button>
+      </div>
+    </section>
+</div>
+    
+    <!-- Billing Section -->
+    <section class="billing">
+      <div>
+        <p>Total Money Pending: ₹<span id="pendingAmount">0</span></p>
+      </div>
+      <div>
+        <p>Total Money Paid: ₹<span id="paidAmount">0</span></p>
+      </div>
+      
+      <div>
+        <button id="payBtn"><a href="../transaction/transaction.html">Pay</a></button>
+      </div>
+    </section>
+    
+    <!-- History Section -->
+    <section class="history">
+      <h2>Order History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Order</th>
+            <th>Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <!-- History rows will be added here dynamically -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- JavaScript to drive the interactions -->
+  <script>
+    // Define the specials with time ranges (using 24-hour format)
+    const specials = {
+      morning: { dish: "Upma", price: 10, start: 6, end: 12 },
+      noon:    { dish: "Biriyani", price: 50, start: 12, end: 16 },
+      evening: { dish: "Samosa", price: 15, start: 16, end: 20 },
+      dinner:  { dish: "Rice", price: 40, start: 20, end: 24 }
+    };
+
+    let currentSpecial = null;
+    let pendingAmount = 0;
+    let paidAmount = 0;
+
+    // Determine the current special based on the client's time
+    function getCurrentSpecial() {
+      const now = new Date();
+      const hour = now.getHours();
+      
+      if (hour >= specials.morning.start && hour < specials.morning.end) {
+        return specials.morning;
+      } else if (hour >= specials.noon.start && hour < specials.noon.end) {
+        return specials.noon;
+      } else if (hour >= specials.evening.start && hour < specials.evening.end) {
+        return specials.evening;
+      } else if (hour >= specials.dinner.start && hour < specials.dinner.end) {
+        return specials.dinner;
+      } else {
+        // Default to morning in case the time is in the wee hours
+        return specials.morning;
+      }
+    }
+
+    // Update the "Now in Mess" section with the current special data
+    function updateCurrentMess() {
+      currentSpecial = getCurrentSpecial();
+      document.getElementById("currentDish").textContent = currentSpecial.dish;
+      document.getElementById("currentPrice").textContent = "Price: ₹" + currentSpecial.price;
+    }
+
+    // Append an order entry to the history table
+    function addHistory(order, amount) {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString();
+      const timeStr = now.toLocaleTimeString();
+      const historyBody = document.getElementById("historyBody");
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${dateStr}</td>
+        <td>${timeStr}</td>
+        <td>${order}</td>
+        <td>${amount}</td>
+      `;
+      historyBody.appendChild(row);
+    }
+
+    // When the Order button is clicked
+    document.getElementById("orderBtn").addEventListener("click", () => {
+      if (currentSpecial) {
+        pendingAmount += currentSpecial.price;
+        document.getElementById("pendingAmount").textContent = pendingAmount;
+        addHistory(currentSpecial.dish, currentSpecial.price);
+      }
+    });
+
+    // When the Pay button is clicked, update totals and go to the transactions page
+    document.getElementById("payBtn").addEventListener("click", () => {
+      // For simplicity, add pending money to paid money and reset pending
+      paidAmount += pendingAmount;
+      pendingAmount = 0;
+      document.getElementById("pendingAmount").textContent = pendingAmount;
+      document.getElementById("paidAmount").textContent = paidAmount;
+      // Redirect to the transactions page (ensure transactions.html exists)
+      window.location.href = "transactions.html";
+    });
+
+    // Initialize the page by updating the current mess section
+    updateCurrentMess();
+  </script>
+</body>
+</html>

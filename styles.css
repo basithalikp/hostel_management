@@ -1,3 +1,58 @@
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #4A90E2;
+    background-color: #fff;
+    outline: none;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #357ABD;
+}
+
+.form-container {
+    margin: 30px auto;
+    max-width: 400px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+nav {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 15px 30px;
+}
+.menu {
+ position: absolute;
+ top: 15px;
+ right: 25px;
+ display: flex;
+ gap: 10px;
+}
+
 /* Default styles */
 body {
     font-family: Arial, sans-serif;
@@ -19,7 +74,8 @@ body {
 
 h1 {
     flex: 1; /* Occupies the left half */
-    font-size: 36px;
+    font-size: 90px;
+    text-align: left;
     color: var(--text-color);
 }
 
@@ -54,6 +110,12 @@ header {
     font-weight: bold;
 }
 
+.logo a{
+    text-decoration: none; /* Removes default underline */
+    color: var(--text-color);
+    display: block;
+}
+
 .menu button {
     background-color: var(--primary-color);
     border: none;
@@ -74,11 +136,6 @@ main {
     padding: 40px;
 }
 
-/*.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-}*/
 
 .grid-item {
     background-color: var(--primary-color);
