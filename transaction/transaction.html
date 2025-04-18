@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction Page</title>
+  <link rel="stylesheet" href="transaction.css" />
+</head>
+<body>
+  <div class="money-animation">
+    <div class="text">You are being redirected to Finance Page</div>
+  </div>
+
+  <div class="transaction-container">
+    <h1>Hostel Transactions</h1>
+    <form id="transactionForm">
+      <input type="text" placeholder="Student Name" required />
+      <input type="number" placeholder="Amount" required />
+      <select required>
+        <option value="">Select Type</option>
+        <option value="fee">Fee</option>
+        <option value="fine">Fine</option>
+        <option value="deposit">Deposit</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="transactionsList"></div>
+  </div>
+
+  <script src="transaction.js"></script>
+</body>
+</html>
